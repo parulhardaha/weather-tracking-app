@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            text-align: center;
+            padding: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 200px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Summary</h1>
+    <form method="POST">
+        <input type="text" name="city" placeholder="Enter city name" required>
+        <input type="submit" value="Get Weather">
+    </form>
+
+    {% if weather_data %}
+    <h2>Weather in {{ weather_data.city }}</h2>
+    <table>
+        <tr>
+            <th>Main Weather</th>
+            <th>Temperature (°C)</th>
+            <th>Feels Like (°C)</th>
+            <th>Timestamp</th>
+        </tr>
+        <tr>
+            <td>{{ weather_data.main_weather }}</td>
+            <td>{{ weather_data.temperature }}</td>
+            <td>{{ weather_data.feels_like }}</td>
+            <td>{{ weather_data.timestamp }}</td>
+        </tr>
+    </table>
+    {% elif weather_data is not none %}
+    <p>City not found. Please try again.</p>
+    {% endif %}
+</body>
+</html>
