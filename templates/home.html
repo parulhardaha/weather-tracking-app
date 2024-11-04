@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Tracking App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 1.8em;
+            color: #0066cc;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 400px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+        input[type="text"]::placeholder {
+            color: #888;
+        }
+        button {
+            width: auto;
+            padding: 8px 16px; /* Slightly larger padding */
+            font-size: 1em; /* Default font size for balance */
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+
+<h1><b>Welcome to My Weather Tracking App</b></h1>
+<br>
+
+<div class="container">
+    <label for="exampleInputText">Enter City</label>
+    <form action="/result" method="get">
+        <input type="text" name="city" placeholder="Enter City..." required>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
