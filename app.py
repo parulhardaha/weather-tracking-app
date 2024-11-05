@@ -1,12 +1,12 @@
-import os
 from flask import Flask, render_template,flash,request,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 import requests
+from datetime import datetime
 
 # 1. set up db config
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///test.db'
-db = SQLAlchemy(app) # instance taht is linked with flask
+db = SQLAlchemy(app) #instance that is linked with flask
 
 #2. create table-model
 #weather model
@@ -41,6 +41,18 @@ def result():
   if response.status_code==200:
      #converted into python dict
      weather_data=response.json()
+
+     #Extract info
+     main_weather=weather_data['weather'][0]['main']
+     temp=weather_data['main']['temp']
+     feels_like=weather_data['main']['feels_like']
+     dt=int(datetime.now().timestamp())
+
+     #add
+     new_weather=Weather(city=city,main=main_weather,temp=temp,feels_like=feels_like,dt=dt)
+     db.session.add(new_weather)
+     db.session.commit()
+
   else:
      weather_data=None       
   return render_template("summary.html",data=weather_data,city=city)
